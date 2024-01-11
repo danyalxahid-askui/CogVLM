@@ -16,7 +16,7 @@ MODEL_ARGS="--from_pretrained $MODEL_TYPE \
     --use_lora \
     --local_tokenizer lmsys/vicuna-7b-v1.5 \
     --version $VERSION"
-# TIPS: max_length include low-resolution image sequence (which has 256 tokens) 
+# TIPS: max_length include low-resolution image sequence (which has 256 tokens)
 
 OPTIONS_SAT="SAT_HOME=~/.sat_models"
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 LOCAL_WORLD_SIZE=$NUM_GPUS_PER_WORKER"
@@ -45,14 +45,14 @@ gpt_options=" \
        --eval-iters 10 \
        --eval-batch-size 1 \
        --split 1. \
-       --deepspeed_config test_config_bf16.json \
+       --deepspeed_config finetune_demo/test_config_bf16.json \
        --skip-init \
        --seed 2023
 "
 
-              
 
-run_cmd="${OPTIONS_NCCL} ${OPTIONS_SAT} deepspeed --master_port 16666 --hostfile ${HOST_FILE_PATH} finetune_cogagent_demo.py ${gpt_options}"
+
+run_cmd="${OPTIONS_NCCL} ${OPTIONS_SAT} deepspeed --master_port 16666 --hostfile ${HOST_FILE_PATH} finetune_demo/finetune_cogagent_demo.py ${gpt_options}"
 echo ${run_cmd}
 eval ${run_cmd}
 
