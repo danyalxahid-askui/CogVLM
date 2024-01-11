@@ -6,7 +6,6 @@ checkpoints/
 records.db
 server.py
 examples/*grounding.png
-archive*
 hostfile
 runs/
 *.idea/
